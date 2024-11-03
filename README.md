@@ -9,6 +9,14 @@
 
 [Github Release](https://github.com/709924470/FanboxViewer/releases)
 
+### Build
+
+Just import the project to android studio or use `gradle build`
+
+### Contribution
+
+Just fork and pull request
+
 ---
 Any question related to this project you can either use issue or join my [telegram group](https://t.me/joinchat/KP2S20Y99ihwPaYeeHabBQ)\
 任何关于本工程的问题可以用Issue提交或加入[我的电报群](https://t.me/joinchat/KP2S20Y99ihwPaYeeHabBQ)

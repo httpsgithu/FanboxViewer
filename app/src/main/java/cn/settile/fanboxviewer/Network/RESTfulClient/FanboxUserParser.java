@@ -106,7 +106,7 @@ public class FanboxUserParser {
     public List<DetailItem> getPostContent(JSONObject body) throws Exception{
         List<DetailItem> items = new ArrayList<>();
 
-        if(!body.getString("restrictedFor").equals("null")){
+        if(body.optBoolean("isRestricted", true) && body.optInt("feeRequired", -1) != 0){
             items.add(new DetailItem(DetailItem.Type.TEXT,
                     String.format(c.getString(R.string.plan_formatting), body.getInt("feeRequired"))));
             items.add(new DetailItem(DetailItem.Type.IMAGE, "false"));
@@ -411,8 +411,9 @@ public class FanboxUserParser {
         SimpleDateFormat sdf = new SimpleDateFormat(c.getString(R.string.date_formatting));
         date = sdf.format(df.parse(date));
 
-        String headerUrl = json.getString("coverImageUrl");
-        if(headerUrl == null || headerUrl.equals("null")){
+        JSONObject cover = json.optJSONObject("cover");
+        String headerUrl = Objects.isNull(cover) ? "null" : cover.optString("url", "null");
+        if(headerUrl.equals("null")){
             JSONObject body = json.optJSONObject("body");
             if(body != null){
                 JSONArray image = body.optJSONArray("images");
